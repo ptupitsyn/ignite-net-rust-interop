@@ -16,11 +16,10 @@ public static class Exports
         }));
 
     [UnmanagedCallersOnly(EntryPoint = "CachePut")]
-    public static void CachePut(int key, int val) => GetOrCreateCache().Put(key, val);
+    public static void CachePut(int key, int val) => Cache.Put(key, val);
 
     [UnmanagedCallersOnly(EntryPoint = "CacheGet")]
-    public static int CacheGet(int key) => GetOrCreateCache().Get(key);
+    public static int CacheGet(int key) => Cache.Get(key);
 
-    private static ICacheClient<int, int> GetOrCreateCache() =>
-        Client.Value.GetOrCreateCache<int, int>("c");
+    private static ICacheClient<int, int> Cache => Client.Value.GetOrCreateCache<int, int>("c");
 }
